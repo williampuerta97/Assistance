@@ -12,8 +12,8 @@
                                 <tr>
                                     <td>{{$position->pos_id}}</td>
                                     <td>{{$position->pos_name}}</td>
-                                    <td><button class="btn btn-primary btn-upd-per" value="{{$position->pos_id}}">Actualizar</button></td>
-                                    <td><button class="btn btn-danger btn-del-per" value="{{$position->pos_id}}">Eliminar</button></td>
+                                    <td><button class="btn btn-primary btn-upd-pos" value="{{$position->pos_id}}">Actualizar</button></td>
+                                    <td><button class="btn btn-danger btn-del-pos" value="{{$position->pos_id}}">Eliminar</button></td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -375,7 +375,7 @@ $(document).ready(function(){
                            url:"addPosition",
                            method: "post",
                            headers: {
-                                'X-CSRF-TOKEN': $('#tokenPerson').val()
+                                'X-CSRF-TOKEN': $('#tokenArea').val()
                             },
                            data: data,
                            success: function(data){
@@ -394,6 +394,22 @@ $(document).ready(function(){
                            }
                     });
             }
+        });
+
+        $(document).on('click','.btn-upd-pos', function(){
+            var id = $(this).val();
+
+            $.get("/positions/find/"+id, function(data){
+                $(".modal-content").empty().html(data);
+                $(".update-modal").modal('show');
+            });
+        });
+
+        $("#form_position_pos").on('submit', function(e){
+            e.preventDefault();
+            $.ajax({
+                url : ""
+            })
         })
     }
 });

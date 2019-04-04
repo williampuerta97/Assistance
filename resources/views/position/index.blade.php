@@ -4,7 +4,7 @@
             <div class="tab-content">
                     <h3>Módulo de Áreas</h3>
                     <form id="form_position" method="post">
-                        <input type="hidden" name="tokenPerson" id="tokenPerson" value="{{ csrf_token() }}"/>
+                        <input type="hidden" name="tokenPerson" id="tokenArea" value="{{ csrf_token() }}"/>
                         <label for="id_number" class="col-form-label col-md-2">Nombre de área</label>
                         <div class="row ml-3">
                             <input type="text" name="area" value="" id="area" class="form-control col-md-2"/>
@@ -17,7 +17,7 @@
        
     
     <div class="modal fade update-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-md">
         <div class="modal-content">
           
         </div>

@@ -22,6 +22,14 @@ class PositionController extends Controller
         
         return View('position.list', compact('positions'));
     }
+
+    public function findPosition($id){
+        $position = Position::find($id);
+        
+        if($position){
+            return View('position.edit', compact('position'));
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *

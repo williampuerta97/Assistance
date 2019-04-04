@@ -9,4 +9,5 @@ class Position extends Model
     protected $table = 'positions';
     protected $primaryKey = 'pos_id';
     protected $fillable = ['pos_name', 'pos_timestamps'];
+    protected $hidden = ['created_at', 'updated_at'];
 }
