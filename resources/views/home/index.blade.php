@@ -27,9 +27,6 @@
             <i class="fas fa-file-invoice"></i>
         </div>
     </div>
-    <div class="subtitle">
-        <h4></h4>
-    </div>
     <div class="tableContent" id="myChart">
         
     </div>
