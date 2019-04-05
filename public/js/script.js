@@ -405,10 +405,31 @@ $(document).ready(function(){
             });
         });
 
-        $("#form_position_pos").on('submit', function(e){
+        $(document).on('click', '#btn-edit-pos', function(e){
+            var id = $("#id_pos").val();
             e.preventDefault();
             $.ajax({
-                url : ""
+                url : "/positions/updatePosition/"+id,
+                method: "PUT",
+                headers: {
+                            'X-CSRF-TOKEN': $('#tokenArea').val()
+                         },
+                data: $("#form_position_pos").serializeArray(),
+                success: function(data){
+                    if(data.ok)
+                    {
+                        list('listPositions','#areas_tabseccion','areas_table');
+                        $(".update-modal").modal('hide');
+                        toastr.success('Completado', data.message);
+                    }
+                    else
+                    {
+                        toastr.error(data.message);
+                    }
+                },
+                error: function(){
+                    toastr.error("Datos incorrectos");
+                }
             })
         })
     }

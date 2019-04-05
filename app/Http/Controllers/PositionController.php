@@ -30,6 +30,18 @@ class PositionController extends Controller
             return View('position.edit', compact('position'));
         }
     }
+
+    public function updatePosition(Request $request, $id){
+        $position = Position::find($id);
+
+        $position->pos_name = $request->get('area');
+        $result = $position->save();
+
+        if($result){
+            return response()->json(["ok"=> true, "message"=>"El registro fue actualizado correctamente"], 200);
+        }
+        return response()->json(["ok"=> false, "message"=>"Error al actualizar el registro"], 404);
+    }
     /**
      * Show the form for creating a new resource.
      *
