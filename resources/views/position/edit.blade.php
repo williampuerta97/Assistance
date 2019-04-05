@@ -7,7 +7,7 @@
         <input type="text" name="area" id="area" value="{{$position->pos_name}}" class="form-control"/>
 </div>
 <div class="modal-footer">
-    <input type="submit" name="submit" value="Actualizar" class="btn btn-primary"/>
-    </form>
+    <input type="submit" name="submit" value="Actualizar" id="btn-edit-pos" class="btn btn-primary"/>
+</form>
 </div>
 
