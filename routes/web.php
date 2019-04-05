@@ -65,4 +65,6 @@ Route::post('addPosition', 'PositionController@store');
 
 Route::get('/positions/find/{id}', 'PositionController@findPosition');
 
+Route::put('/positions/updatePosition/{id}', 'PositionController@updatePosition');
+
 //Route::get('load/person/data', 'PersonController@loadData')->name('load.person.data');

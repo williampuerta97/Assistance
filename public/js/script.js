@@ -406,9 +406,29 @@ $(document).ready(function(){
         });
 
         $("#form_position_pos").on('submit', function(e){
+            var id = $("#id_pos").val();
             e.preventDefault();
             $.ajax({
-                url : ""
+                url : "/positions/updatePosition/"+id,
+                method: "PUT",
+                headers: {
+                            'X-CSRF-TOKEN': $('#tokenArea').val()
+                         },
+                data: $(this).serializeArray(),
+                success: function(data){
+                    if(data.ok)
+                    {
+                        list('listPositions','#areas_tabseccion','areas_table');
+                        toastr.success('Completado', "'"+data.message+"'");
+                    }
+                    else
+                    {
+                        toastr.error("'"+data.message+"'");
+                    }
+                },
+                error: function(){
+                    toastr.error("Datos incorrectos");
+                }
             })
         })
     }
