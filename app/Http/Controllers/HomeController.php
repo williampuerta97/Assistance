@@ -131,28 +131,42 @@ class HomeController extends Controller
     {
         $user = "";
         if($type == "Todo"){
-            $user = DB::table('people')
-            ->select('peo_id_number', 'peo_first_name', 'peo_second_name', 'peo_last_name', 'peo_second_surname', 
-            'pos_name', 'mov_type', 'mov_datetime')
-            ->join('positions', 'pos_id', '=', 'peo_pos_id')
-            ->join('movements', 'mov_peo_id', '=', 'peo_id')
-            ->where('mov_datetime', '>=', $fecha_inicio)
-            ->where('mov_datetime', '<=', $fecha_fin)
-            ->orderBy('mov_datetime')
-            ->get();   
+            
+            $sql = "SELECT peo_id_number, peo_first_name, peo_second_name, peo_last_name, peo_second_surname, 
+            pos_name, mov_type, mov_datetime FROM people p INNER JOIN positions po ON p.peo_pos_id = po.pos_id 
+            INNER JOIN movements m ON p.peo_id = m.mov_peo_id WHERE CAST(mov_datetime AS DATE) BETWEEN 
+             '$fecha_inicio' AND '$fecha_fin' ORDER BY mov_datetime";
+            $user = DB::select($sql);                            
+
+        }else if($fecha_inicio == $fecha_fin){
+            
+            $sql = "SELECT peo_id_number, peo_first_name, peo_second_name, peo_last_name, peo_second_surname, 
+            pos_name, mov_type, mov_datetime FROM people p INNER JOIN positions po ON p.peo_pos_id = po.pos_id 
+            INNER JOIN movements m ON p.peo_id = m.mov_peo_id WHERE ";
+
+            if($type != "Todo"){
+                $sql .= " mov_type = '$type' AND ";
+            }
+
+            $sql .= "CAST(mov_datetime AS DATE) = '$fecha_inicio' ORDER BY mov_datetime";
+
+            $user = DB::select($sql);                            
         }else{
-            $user = DB::table('people')
+            /*$user = DB::table('people')
             ->select('peo_id_number', 'peo_first_name', 'peo_second_name', 'peo_last_name', 'peo_second_surname', 
             'pos_name', 'mov_type', 'mov_datetime')
             ->join('positions', 'pos_id', '=', 'peo_pos_id')
             ->join('movements', 'mov_peo_id', '=', 'peo_id')
             ->where('mov_type', '=', $type)
-            ->where('mov_datetime', '>=', $fecha_inicio)
-            ->where('mov_datetime', '<=', $fecha_fin)
+            ->whereBetween('mov_datetime', [$fecha_inicio, $fecha_fin])            
             ->orderBy('mov_datetime')
-            ->get();      
-        }
-        
+            ->get();     */
+            $sql = "SELECT peo_id_number, peo_first_name, peo_second_name, peo_last_name, peo_second_surname, 
+            pos_name, mov_type, mov_datetime FROM people p INNER JOIN positions po ON p.peo_pos_id = po.pos_id 
+            INNER JOIN movements m ON p.peo_id = m.mov_peo_id WHERE mov_type = '$type' AND CAST(mov_datetime AS DATE) BETWEEN 
+             '$fecha_inicio' AND '$fecha_fin' ORDER BY mov_datetime";
+            $user = DB::select($sql);                            
+        }              
         return $user;
     }
     

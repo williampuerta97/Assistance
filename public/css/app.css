@@ -114,7 +114,7 @@ font{
 }
 .cards{
     display:grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 32% 32% 32%;
     grid-template-rows: 20% 10% 65%;
     grid-gap:12px;
     width:100%;
