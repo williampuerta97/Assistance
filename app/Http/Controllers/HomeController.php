@@ -170,6 +170,25 @@ class HomeController extends Controller
         return $user;
     }
     
+    public function columnChart()
+    {
+        $sql = "SELECT CONCAT(p.peo_first_name, ' ', p.peo_second_name, ' ', p.peo_last_name, ' ', 
+         p.peo_second_surname) as name, 
+         TIME_FORMAT(SEC_TO_TIME(avg(hour(m.mov_datetime) * 3600 + (minute(m.mov_datetime) * 60) + second(m.mov_datetime))),'%H:%i') as time 
+         FROM people p INNER JOIN movements m ON p.peo_id = m.mov_peo_id WHERE m.mov_type = 'Entrada' 
+         GROUP BY p.peo_id, name";
+
+        $result = DB::select($sql);
+        $json = [];    
+         foreach ($result as $r) {
+             $first = substr($r->time, 0, 2);
+             $last = substr($r->time, -2);
+             $json[] = [$r->name, (int)$first, (int)$last];
+         }
+
+         return response()->json($json);
+    }
+
     public function returnHome()
     {
         return view('home.home');

@@ -23,6 +23,8 @@ Route::get('register', 'HomeController@register');
 
 Route::get('report', 'HomeController@report');
 
+Route::get('column-chart', 'HomeController@columnChart');
+
 Route::get('home/{fecha_inicio}/{fecha_fin}/{type}/reportFilter', 'HomeController@reportFilter');
 
 Route::get('home/inputsreport', function(){

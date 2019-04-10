@@ -651,65 +651,7 @@ function Validate(input, campo, tipo){
 
 function estadistica()
 {
-    Highcharts.chart("myChart",{
-       chart: {
-            type: 'line'
-        },
-        title: {
-            text: 'Promedio de llegada por persona'
-        },
-        xAxis: {
-            type: 'category',
-            labels: {   
-                style: {
-                    fontSize: '13px',
-                    fontFamily: 'Verdana, sans-serif'
-                }
-            }
-        },
-        yAxis: {
-            min: Date.UTC(2019, 0, 0, 5, 0, 0),
-            max: Date.UTC(2019, 0, 0, 9, 0, 0),
-            type: 'datetime',
-            title: {
-                text: 'Horario llegada'
-            }
-        },
-        legend: {
-            enabled: false
-        },
-        tooltip: {
-            dateTimeLabelFormats:{
-                day:"%A, %b %e, %Y",
-                hour:"%A, %b %e, %H:%M:%p",
-                millisecond:"%A, %b %e, %H:%M:%S.%L",
-                minute:"%A, %b %e, %H:%M",
-                month:"%B %Y",
-                second:"%A, %b %e, %H:%M:%S",
-                year:"%Y"
-            },
-            pointFormat: 'Promedio: <b>{point.y:%H:%M:%p}</b>'
-        },
-        series: [{
-            name: 'Trabajadores',
-            data: [
-                ['Hans', Date.UTC(2019, 0, 0, 7, 0, 0)],
-                ['William', Date.UTC(2019, 0, 0, 6, 57, 0)],
-                ['Robert', Date.UTC(2019, 0, 0, 7, 1, 0)]
-            ],
-            dataLabels: {
-                enabled: false,
-                rotation: -90,
-                color: '#FFFFFF',
-                align: 'right',
-                y: 10, // 10 pixels down from the top
-                style: {
-                    fontSize: '13px',
-                    fontFamily: 'Verdana, sans-serif'
-                }
-            }
-        }]
-    });
+    columnChart('myChart');
 }
 
 
@@ -799,6 +741,66 @@ function onlyList(url, selector)
     $.get(url, function(data){
         $(selector).empty().html(data);
     });
+}
+
+function columnChart(selector)
+{
+    var d = new Date();
+    var n = d.getFullYear();
+    var options = {
+        chart: {            
+            renderTo: selector,
+            type: 'column'
+        },
+        title: {
+            text: 'Promedio de llegada por persona'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {   
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: Date.UTC(n, 0, 0, 5, 0, 0),
+            max: Date.UTC(n, 0, 0, 9, 0, 0),
+            type: 'datetime',
+            title: {
+                text: 'Horario llegada'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            dateTimeLabelFormats:{
+                day:"%A, %b %e, %Y",
+                hour:"%A, %b %e, %H:%M:%p",
+                millisecond:"%A, %b %e, %H:%M:%S.%L",
+                minute:"%A, %b %e, %H:%M",
+                month:"%B %Y",
+                second:"%A, %b %e, %H:%M:%S",
+                year:"%Y"
+            },
+            pointFormat: 'Promedio: <b>{point.y:%H:%M:%p}</b>'
+        },
+        series: [{
+            
+        }]
+    };
+    $.get('column-chart', function(data){                
+        json = [];
+        i = 0;
+        data.forEach(d => {                                               
+            json[i] = [d[0], Date.UTC(n, 0, 0, d[1], d[2], 0)]; 
+            i++;
+        });                     
+        options.series[0].data = json;
+        new Highcharts.Chart(options);
+    });    
 }
 
 
