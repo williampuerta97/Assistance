@@ -69,4 +69,6 @@ Route::get('/positions/find/{id}', 'PositionController@findPosition');
 
 Route::put('/positions/updatePosition/{id}', 'PositionController@updatePosition');
 
+Route::delete('deletePosition/{id}', 'PositionController@delete');
+
 //Route::get('load/person/data', 'PersonController@loadData')->name('load.person.data');

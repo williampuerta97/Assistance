@@ -432,6 +432,53 @@ $(document).ready(function(){
                 }
             })
         })
+
+        $(document).on('click', '.btn-del-pos', function(e) {
+            var id = $(this).val();
+            
+            $(".modal-content").empty().html(
+                "<div class='modal-header'><h4>Eliminar registro</h4></div>"+
+                "<div class='modal-body'>¿Desea eliminar permanentemente el registro?</div>"+
+                "<div class='modal-footer'>"+
+                "<button class='btn btn-outline-dark' id='btn-cancelar'>Cancelar</button>"+
+                "<button class='btn btn-danger del-position-btn' value='"+id+"'>Eliminar</button>"+
+                "</div>"
+            );
+            $(".update-modal").modal('show');
+        });
+
+        $(document).on('click', '#btn-cancelar', function(e) {
+            $(".update-modal").modal('hide');
+        });
+
+        $(document).on('click', '.del-position-btn', function(e){
+            e.preventDefault();
+            
+            var id = $(this).val();
+            
+                $.ajax({
+                        url:"deletePosition/"+id,
+                        method: "DELETE",
+                        headers: {
+                             'X-CSRF-TOKEN': $('#tokenArea').val()
+                         },
+                        success: function(data){
+                            if(data.res != "error")
+                            {
+                                 toastr.success('Completado', 'Registro eliminado correctamente');
+                                 list('listPositions','#areas_tabseccion','areas_table');
+                                 $('.update-modal').modal('hide');
+                            }
+                            else
+                            {
+                                toastr.error("Error");
+                            }
+                        },
+                        error: function(){
+                            toastr.error("Datos incorrectos (error:catch)");
+                        }
+                });
+         });
     }
 });
 

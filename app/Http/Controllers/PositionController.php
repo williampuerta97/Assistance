@@ -77,6 +77,14 @@ class PositionController extends Controller
         }
     }
 
+    public function delete($id){
+        $position = Position::find($id);
+        $result = $position->delete();
+        
+        if($result == false){
+                return response()->json(['res' =>'error']);
+        }
+    }
     /**
      * Display the specified resource.
      *
