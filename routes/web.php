@@ -13,9 +13,9 @@
 
 Auth::routes();
 
-/*Route::get('/', function(){
-   return view("home"); 
-});*/
+Route::get('/', function(){
+   return view("auth.login"); 
+});
 
 Route::get('/home', 'HomeController@index');
 
@@ -72,3 +72,7 @@ Route::put('/positions/updatePosition/{id}', 'PositionController@updatePosition'
 Route::delete('deletePosition/{id}', 'PositionController@delete');
 
 //Route::get('load/person/data', 'PersonController@loadData')->name('load.person.data');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

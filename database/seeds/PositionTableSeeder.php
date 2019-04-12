@@ -22,11 +22,11 @@ class PositionTableSeeder extends Seeder
         ]);
 
         Position::create([
-            "pos_name" => "Director@ Financiera"
+            "pos_name" => "Director(a) Financiera"
         ]);
 
         Position::create([
-            "pos_name" => "Director@ Comercial"
+            "pos_name" => "Director(a) Comercial"
         ]);
         
     }
