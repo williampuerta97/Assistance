@@ -1,5 +1,5 @@
                     <div class="modal-header">
-                        <h4>Actualizar persona</h4>
+                        <h5>Actualizar persona</h5>
                     </div>
                     <div class="modal-body">
                         <form id="u_form_person" method="PUT">
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                            <input type="submit" name="submit" value="Actualizar" id="upd-person-btn" class="btn btn-warning text-white"/>
+                            <input type="submit" name="submit" value="Actualizar" id="upd-person-btn" class="btn btn-primary text-white"/>
                             <button class="btn btn-danger" id="btn-cancelar">Cancelar</button>
                         </form>
                     </div>

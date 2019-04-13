@@ -47,5 +47,23 @@ class PersonTableSeeder extends Seeder
             'peo_pos_id' => 3, 
             'peo_status' => 1
         ]);
+
+        Person::create([
+            'peo_id_number' => '1114898297',
+            'peo_first_name' => 'William',
+            'peo_second_name' => 'Steven',
+            'peo_last_name' => 'Puerta',
+            'peo_second_surname' => 'Taquinas',
+            'peo_email' => 'williampuerta1097@gmail.com', 
+            'peo_gender' => 'M', 
+            'peo_phone_a' => '3177576490', 
+            'peo_phone_b' => '', 
+            'peo_blood_type' => 'A', 
+            'peo_rh' => '+', 
+            'peo_address' => 'Carrera 76a #1b-27', 
+            'peo_date_of_birth' => "1997-10-07", 
+            'peo_pos_id' => 2, 
+            'peo_status' => 1
+        ]);
     }
 }

@@ -18,9 +18,6 @@
                 </div>
               </div>
               <div class="card">
-                <div class="card-header">
-                  <h3>Listado de áreas</h3>
-                </div>
                 <div class="card-body">
                   <div id="areas_tabseccion" class="col-md-11 dataTables_wrapper dt-bootstrap4 mt-3"></div><!-- aquí se inyecta el datatable -->
                 </div>
