@@ -19,12 +19,13 @@ html, body{
     width: 100%;
     height:100%;
 }
-header{
+/* header{
     width: 100%;
     height: 10%;
     background:#1541f2;
-     font-family: sans-serif;
+    font-family: sans-serif;
 }
+ */
 header span{
     width:4%;
 }
@@ -35,7 +36,7 @@ header p{
     text-align:center;
     font-size:40px;
 }
-header span i{
+/* header span i{
     font-size:30px;
     position:relative;
     top:10px;    
@@ -45,16 +46,13 @@ header span i{
     transition:all 300ms;
     padding:2px;
     cursor:pointer;
-}
+} */
 header span i:hover{
     color:#fff;
 }
 .content{
     width: 100%;
     height: 90%;
-    display: grid;
-    grid-template-columns:5% 95%;
-    grid-template-rows:95% 5%;
 }
 
 .menu{
@@ -101,13 +99,15 @@ font{
     margin-right:30px;
 }
 
-.footer{
-    background:#1541f2;
-    color:#fff;
-    grid-column:1/3;
-    text-align:center;
-    padding:5px;
-    position: relative;
+.footer {
+    background: #1541f2;
+    color: #fff;
+    grid-column: 1/3;
+    text-align: center;
+    padding: 5px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 .activo{
     color:#fff;

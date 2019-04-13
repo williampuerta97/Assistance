@@ -11,15 +11,28 @@
 |
 */
 
-Auth::routes();
-
 Route::get('/', function(){
    return view("auth.login"); 
 });
+// Authentication Routes...
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// Password Reset Routes...
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+Route::group(['middleware' => ['auth']], function () {
+    //
+
+Route::post('createAdmin', 'Auth\RegisterController@create');
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('register', 'HomeController@register');
+//Route::get('register', 'HomeController@register');
 
 Route::get('report', 'HomeController@report');
 
@@ -31,7 +44,7 @@ Route::get('home/inputsreport', function(){
     return view("home.inputsreport"); 
 });
 
-Route::get('/movement', 'MovementController@index');
+Route::get('/movement', 'MovementController@index')->name('movimientos');
 
 Route::post('addMovement', 'MovementController@store');
 
@@ -47,7 +60,7 @@ Route::put('updatePerson/{id}', 'PersonController@update');
 
 Route::delete('deletePerson/{id}', 'PersonController@delete');
 
-Route::get('/personas', 'PersonController@index');
+Route::get('/personas', 'PersonController@index')->name('personas');
 
 Route::get('listPeople', 'PersonController@listPeople');
 
@@ -59,7 +72,7 @@ Route::get('exportPDF/{fecha_inicio}/{fecha_fin}/{type}/export', 'HomeController
 
 Route::get('returnHome', 'HomeController@returnHome');
 
-Route::get('/areas', 'PositionController@index');
+Route::get('/areas', 'PositionController@index')->name('areas');
 
 Route::get('listPositions', 'PositionController@listPositions');
 
@@ -71,8 +84,11 @@ Route::put('/positions/updatePosition/{id}', 'PositionController@updatePosition'
 
 Route::delete('deletePosition/{id}', 'PositionController@delete');
 
-//Route::get('load/person/data', 'PersonController@loadData')->name('load.person.data');
+Route::get('listAdmins', 'Auth\RegisterController@listAdmins');
 
-Auth::routes();
+Route::get('/registrar', 'Auth\RegisterController@showRegistrationForm')->name('registrar');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+});

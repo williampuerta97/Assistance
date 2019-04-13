@@ -30,14 +30,14 @@ class HomeController extends Controller
         return view('home.index');
     }
     
-    public function register()
+    /* public function register()
     {
         $user = DB::table('people')
         ->select('*')
         ->get();
         
         return view('home.registertable', compact('user'));
-    }
+    } */
     
     public function inasistencia(Request $request)
     {

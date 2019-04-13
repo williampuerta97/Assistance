@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+//use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -20,14 +21,14 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    //use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '';
 
     /**
      * Create a new controller instance.
@@ -36,7 +37,12 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        //$this->middleware('guest');
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
     }
 
     /**
@@ -60,12 +66,26 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        if($request->ajax()){
+            
+            $admin = new User;
+
+            $admin->name = $request->get('name');
+            $admin->email = $request->get('email');
+            $admin->password = bcrypt($request->get('password'));
+            
+            $result = $admin->save();
+                
+            if($result == false){
+                return response()->json(['res' =>'error']);
+            }
+        }
+    }
+
+    public function listAdmins(){
+        $admins = User::all();
+        return view('auth.list', compact('admins'));
     }
 }

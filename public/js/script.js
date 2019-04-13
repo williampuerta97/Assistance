@@ -480,7 +480,43 @@ $(document).ready(function(){
                 });
          });
     }
+
+    if(window.location.href.indexOf('registrar') > -1)
+    {
+        list('listAdmins','#tbl-content-adm', 'adm_table');
+
+        $("#form_adm").on('submit', function(e){
+            e.preventDefault();
+            
+            var data = $(this).serializeArray();
+            
+            $.ajax({
+                url: "createAdmin",
+                method: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('#tokenAdmin').val()
+                },
+                data:data,
+                success: function(data){
+                   if(data.res != "error")
+                   {
+                        toastr.success('Completado', 'Registro creado correctamente');
+                        list('listAdmins','#tbl-content-adm', 'adm_table');
+                   }
+                   else
+                   {
+                       toastr.error("Error");
+                   }
+               },
+               error: function(){
+                   toastr.error("Error en el servidor");
+               }
+            });
+        })
+    }
 });
+
+
 
 function removeClass()
 {

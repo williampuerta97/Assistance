@@ -19,20 +19,41 @@
 </head>
 <body>
     <header>
-        <span class="menu-icon"><i class="fas fa-bars"></i></span>
-        <p>CIS (Control de Ingresos y Salidas)</p>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">
+                    <a class="navbar-brand" href="#">CSI</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                
+                    <div class="collapse navbar-collapse" id="navbarColor03">
+                      <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                          <a class="nav-link" href="{{route('home')}}">Inicio <span class="fa fa-home"></span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{route('movimientos')}}">Movimientos <span class="fa fa-file-alt"></span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{route('registrar')}}">Administradores <span class="fa fa-user"></span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{route('personas')}}">Personas <span class="fa fa-users"></span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{route('areas')}}">Cargos <span class="fa fa-id-card"></span></a>
+                        </li>
+                      </ul>
+                      <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                      </form>
+                        <a href="{{route('logout')}}" class="btn btn-light ml-1">Cerrar sesión</a>
+                    </div>
+                  </nav>
     </header>
     <div class="content">
-        <div class="menu">
-            <div class="line"><ul><li id="home"><i id="ihome" class="fa fa-home active"></i><font class="active">Inicio</font></li></ul></div>
-            <div class="line"><ul><li id="movement"><i id="imovement" class="fas fa-file-alt"></i><font>Movimiento</font></li></ul></div>
-            <div class="line"><ul><li id="users"><i id="iusers" class="fas fa-user"></i><font>Usuarios</font></li></ul></div>
-            <div class="line"><ul><li id="people"><i id="ipeople" class="fas fa-users"></i><font>Personas</font></li></ul></div>
-            <div class="line"><ul><li id="positions"><i id="ipositions" class="fas fa-id-card"></i><font>Cargos</font></li></ul></div>
-        </div>
         <div class="forms">
             @yield("content")
-            
         </div>
         <div class="footer">
             Hecho por Sistemas Informáticos.
