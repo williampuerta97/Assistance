@@ -19,12 +19,12 @@
 </head>
 <body>
     <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-relative" style="background-color: #e3f2fd;">
                     <a class="navbar-brand" href="#">CSI</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
-                
+                    @auth
                     <div class="collapse navbar-collapse" id="navbarColor03">
                       <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -43,12 +43,9 @@
                           <a class="nav-link" href="{{route('areas')}}">Cargos <span class="fa fa-id-card"></span></a>
                         </li>
                       </ul>
-                      <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-                      </form>
-                        <a href="{{route('logout')}}" class="btn btn-light ml-1">Cerrar sesión</a>
+                        <a href="{{route('logout')}}" class="btn btn-light ml-1">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>
                     </div>
+                    @endauth
                   </nav>
     </header>
     <div class="content">

@@ -2,7 +2,11 @@
 @section("content")
             
             <div class="tab-content">
-                    <h3>Módulo de Áreas</h3>
+              <div class="card">
+                <div class="card-header">
+                  <h3>Módulo de Áreas</h3>
+                </div>
+                <div class="card-body">
                     <form id="form_position" method="post">
                         <input type="hidden" name="tokenPerson" id="tokenArea" value="{{ csrf_token() }}"/>
                         <label for="id_number" class="col-form-label col-md-2">Nombre de área</label>
@@ -11,11 +15,17 @@
                             <input type="submit" name="submit" value="Guardar" class="btn btn-primary ml-2"/>    
                         </div>
                     </form>
-                    
-                    <div id="areas_tabseccion" class="col-md-11 dataTables_wrapper dt-bootstrap4 mt-3"></div><!-- aquí se inyecta el datatable -->
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <h3>Listado de áreas</h3>
+                </div>
+                <div class="card-body">
+                  <div id="areas_tabseccion" class="col-md-11 dataTables_wrapper dt-bootstrap4 mt-3"></div><!-- aquí se inyecta el datatable -->
+                </div>
+              </div>  
             </div>
-       
-    
     <div class="modal fade update-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-md">
         <div class="modal-content">
