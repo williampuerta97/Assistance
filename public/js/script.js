@@ -369,8 +369,11 @@ $(document).ready(function(){
         $("#form_position").on('submit', function(e){
             e.preventDefault();
             
-            if(Validate($("#area"), "Nombre de área", "nombre")!=0){
+            if(
+                
+                Validate($("#area"), "Nombre de área", "texto_espaciado")!=0){
                 var data = $(this).serializeArray();
+                
                 $.ajax({
                            url:"addPosition",
                            method: "post",
@@ -390,7 +393,7 @@ $(document).ready(function(){
                                }
                            },
                            error: function(){
-                               toastr.error("Datos incorrectos (error:catch)");
+                               toastr.error("Error en el servidor");
                            }
                     });
             }
@@ -726,6 +729,22 @@ function Validate(input, campo, tipo){
             }else{
                 return 1;
             }
+            break;
+        
+        case 'texto_espaciado':
+            if(input.val().trim()==""){
+                toastr.error("El campo "+campo+" no puede estar vacío.");
+                input.css("border", "2px solid #c13f3f");
+                return 0;
+            }else{
+                if(!input.val().match('[a-zA-Z]')){
+                    toastr.error("El campo "+campo+" debe ser sólo texto.");
+                    input.css("border", "2px solid #c13f3f");
+                    return 0;
+                }
+            }
+            return 1;
+        break;
         default:
             // code
     }
