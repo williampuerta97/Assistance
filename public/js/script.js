@@ -516,6 +516,55 @@ $(document).ready(function(){
                }
             });
         })
+
+        $(document).on("click",".btn-upd-per", function(){
+            
+            var id = $(this).val();
+
+            $.get("/admin/find/"+id, function(data){
+                $(".modal-content").empty().html(data);
+                $(".update-modal").modal('show');
+            });
+        })
+        
+        $(document).on('click', '#btn-upd-adm', function(){
+
+            var id = $("#id").val();
+            var data = {"email":$("#upd-email").val(), "password":$("#upd-password").val()}
+            var cont = 0;
+
+            console.log(id);
+
+            cont += Validate($("#upd-email"), "Correo electrónico", "mail");
+            cont += Validate($("#upd-password", "Contraseña", "password"));
+
+            if(cont == 2){
+
+            $.ajax({
+                url: "/admin/update/"+id,
+                method: "PUT",
+                headers: {
+                    'X-CSRF-TOKEN': $('#tokenAdmin').val()
+                },
+                data: data,
+                success: function(data){
+                    if(!data.status)
+                    {
+                         toastr.success('Completado', 'Registro actualizado correctamente');
+                         list('listAdmins','#tbl-content-adm', 'adm_table');
+                         $(".update-modal").modal('hide');
+                    }
+                    else
+                    {
+                        toastr.error("Error");
+                    }
+                },
+                error: function(){
+                    toastr.error("Error en el servidor");
+                }
+            })
+        }
+        })
     }
 });
 
@@ -606,6 +655,15 @@ function configToast(){
 function Validate(input, campo, tipo){
     
     switch (tipo) {
+        case 'password':
+            if(true){
+                toastr.error("El campo "+campo+" no puede estar vacío.");
+                input.css("border", "2px solid #c13f3f");
+                return 0;
+            }else{ 
+                return 1;
+            }
+            break;
         case 'numero':
             if(input.val().trim() == ""){
                 toastr.error("El campo "+campo+" no puede estar vacío.");

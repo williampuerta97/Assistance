@@ -38,9 +38,9 @@ class PositionController extends Controller
         $result = $position->save();
 
         if($result){
-            return response()->json(["ok"=> true, "message"=>"El registro fue actualizado correctamente"], 200);
+            return response()->json(["status"=> true, "message"=>"El registro fue actualizado correctamente"], 200);
         }
-        return response()->json(["ok"=> false, "message"=>"Error al actualizar el registro"], 404);
+        return response()->json(["status"=> false, "message"=>"Error al actualizar el registro"], 404);
     }
     /**
      * Show the form for creating a new resource.

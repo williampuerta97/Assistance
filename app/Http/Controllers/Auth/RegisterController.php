@@ -88,4 +88,25 @@ class RegisterController extends Controller
         $admins = User::all();
         return view('auth.list', compact('admins'));
     }
+
+    public function find($id){
+        $admin = User::find($id);
+        
+        if($admin){
+            return View('auth.edit', compact('admin'));
+        }
+    }
+
+    public function update(Request $request, $id){
+        $admin = User::find($id);
+
+        $admin->email = $request->get('email');
+        $admin->password = bcrypt($request->get('password'));
+        $result = $admin->save();
+
+        if($result){
+            return response()->json(["ok"=> true, "message"=>"El registro fue actualizado correctamente"], 200);
+        }
+        return response()->json(["ok"=> false, "message"=>"Error al actualizar el registro"], 404);
+    }
 }
