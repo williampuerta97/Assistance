@@ -504,6 +504,7 @@ $(document).ready(function(){
                    if(data.res != "error")
                    {
                         toastr.success('Completado', 'Registro creado correctamente');
+                        $("#form_adm")[0].reset();
                         list('listAdmins','#tbl-content-adm', 'adm_table');
                    }
                    else
@@ -517,7 +518,7 @@ $(document).ready(function(){
             });
         })
 
-        $(document).on("click",".btn-upd-per", function(){
+        $(document).on("click",".btn-upd-adm", function(){
             
             var id = $(this).val();
 
@@ -528,7 +529,7 @@ $(document).ready(function(){
         })
         
         $(document).on('click', '#btn-upd-adm', function(){
-
+            
             var id = $("#id").val();
             var data = {"email":$("#upd-email").val(), "password":$("#upd-password").val()}
             var cont = 0;
@@ -536,7 +537,7 @@ $(document).ready(function(){
             console.log(id);
 
             cont += Validate($("#upd-email"), "Correo electrónico", "mail");
-            cont += Validate($("#upd-password", "Contraseña", "password"));
+            cont += Validate($("#upd-password"), "Contraseña", "password");
 
             if(cont == 2){
 
@@ -565,6 +566,53 @@ $(document).ready(function(){
             })
         }
         })
+
+        $(document).on('click', '.btn-del-adm', function(e) {
+            var id = $(this).val();
+            
+            $(".modal-content").empty().html(
+                "<div class='modal-header'><h4>Eliminar registro</h4></div>"+
+                "<div class='modal-body'>¿Desea eliminar permanentemente el registro?</div>"+
+                "<div class='modal-footer'>"+
+                "<button class='btn btn-outline-dark' id='btn-cancelar'>Cancelar</button>"+
+                "<button class='btn btn-danger del-admin-btn' value='"+id+"'>Eliminar</button>"+
+                "</div>"
+            );
+            $(".update-modal").modal('show');
+        });
+
+        $(document).on('click', '#btn-cancelar', function(e) {
+            $(".update-modal").modal('hide');
+        });
+
+        $(document).on('click', '.del-admin-btn', function(e){
+            e.preventDefault();
+            
+            var id = $(this).val();
+            
+                $.ajax({
+                        url:"admin/delete/"+id,
+                        method: "DELETE",
+                        headers: {
+                             'X-CSRF-TOKEN': $('#tokenAdmin').val()
+                         },
+                        success: function(data){
+                            if(data.res != "error")
+                            {
+                                 toastr.success('Completado', 'Registro eliminado correctamente');
+                                 list('listAdmins','#tbl-content-adm', 'adm_table');
+                                 $('.update-modal').modal('hide');
+                            }
+                            else
+                            {
+                                toastr.error("Error");
+                            }
+                        },
+                        error: function(){
+                            toastr.error("Error en el servidor");
+                        }
+                });
+         });
     }
 });
 
@@ -656,7 +704,7 @@ function Validate(input, campo, tipo){
     
     switch (tipo) {
         case 'password':
-            if(true){
+            if(input.val().trim() == ""){
                 toastr.error("El campo "+campo+" no puede estar vacío.");
                 input.css("border", "2px solid #c13f3f");
                 return 0;

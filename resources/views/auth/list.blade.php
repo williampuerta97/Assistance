@@ -10,8 +10,8 @@
             @foreach($admins as $admin)
                 <tr>
                     <td>{{$admin->email}}</td>
-                    <td><button class="btn btn-primary btn-upd-per" value="{{$admin->id}}">Actualizar</button></td>
-                    <td><button class="btn btn-danger btn-del-per" value="{{$admin->id}}">Eliminar</button></td>
+                    <td><button class="btn btn-primary btn-upd-adm" value="{{$admin->id}}">Actualizar</button></td>
+                    <td><button class="btn btn-danger btn-del-adm" value="{{$admin->id}}">Eliminar</button></td>
                 </tr>
             @endforeach
         </tbody>

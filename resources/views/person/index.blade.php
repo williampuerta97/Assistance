@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane col-md-12" id="seccion2">
-                    <div class="card">
+                    <div class="">
                         <div class="card-header">
                                 <h3>Módulo de Personas</h3>
                         </div>

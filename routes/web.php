@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
 Route::post('createAdmin', 'Auth\RegisterController@create');
 Route::get('admin/find/{id}', 'Auth\RegisterController@find');
 Route::put('admin/update/{id}', 'Auth\RegisterController@update');
-
+Route::delete('admin/delete/{id}', 'Auth\RegisterController@delete');
 Route::get('/home', 'HomeController@index');
 
 //Route::get('register', 'HomeController@register');

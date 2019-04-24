@@ -109,4 +109,13 @@ class RegisterController extends Controller
         }
         return response()->json(["ok"=> false, "message"=>"Error al actualizar el registro"], 404);
     }
+    
+    public function delete($id){
+        $admin = User::find($id);
+        $result = $admin->delete();
+        
+        if($result == false){
+                return response()->json(['res' =>'error']);
+        }
+    }
 }
