@@ -26,7 +26,7 @@ class PersonTableSeeder extends Seeder
             'peo_rh' => '+', 
             'peo_address' => 'Cra 3N #38-70', 
             'peo_date_of_birth' => "1999-10-05", 
-            'peo_pos_id' => 2, 
+            'peo_pos_id' => 12, 
             'peo_status' => 1
         ]);
 
@@ -63,6 +63,24 @@ class PersonTableSeeder extends Seeder
             'peo_address' => 'Carrera 76a #1b-27', 
             'peo_date_of_birth' => "1997-10-07", 
             'peo_pos_id' => 2, 
+            'peo_status' => 1
+        ]);
+
+        Person::create([
+            'peo_id_number' => '89765409',
+            'peo_first_name' => 'Robert',
+            'peo_second_name' => 'Danilo',
+            'peo_last_name' => 'Muñoz',
+            'peo_second_surname' => 'Guapacha',
+            'peo_email' => 'robertmunoz@gmail.com', 
+            'peo_gender' => 'M', 
+            'peo_phone_a' => '3159876578', 
+            'peo_phone_b' => '', 
+            'peo_blood_type' => 'O', 
+            'peo_rh' => '+', 
+            'peo_address' => 'Carrera 2a #12-56', 
+            'peo_date_of_birth' => "1971-11-17", 
+            'peo_pos_id' => 4, 
             'peo_status' => 1
         ]);
     }

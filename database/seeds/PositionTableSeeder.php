@@ -29,5 +29,37 @@ class PositionTableSeeder extends Seeder
             "pos_name" => "Director(a) Comercial"
         ]);
         
+        Position::create([
+            "pos_name" => "Coordinador(a) RRHH"
+        ]);
+        
+        Position::create([
+            "pos_name" => "Analista Contable"
+        ]);
+        
+        Position::create([
+            "pos_name" => "Analista de control de calidad"
+        ]);
+        
+        Position::create([
+            "pos_name" => "Auxiliar de servicio al cliente"
+        ]);
+        
+        Position::create([
+            "pos_name" => "Director(a) Administrativa"
+        ]);
+        
+        Position::create([
+            "pos_name" => "Analista de planeación"
+        ]);
+        
+        Position::create([
+            "pos_name" => "Auxiliar de monitoreo"
+        ]);
+        
+        Position::create([
+            "pos_name" => "Coordinador(a) Tecnología e Informática"
+        ]);
+        
     }
 }
